@@ -2,3 +2,5 @@ requests
 os
 dotenv
 pprint
+json
+tqdm

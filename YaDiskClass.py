@@ -18,21 +18,20 @@ class YaApiHandler:
         headers = self.get_headers()
         params = {'path': f'/{dir_name}'}
         response = requests.put(method_name, headers=headers, params=params)
-        print(response)
+        return response
 
-    def upload_files(self, photos: dict = 1):
+    def upload_files(self, url, file_name, dir_name=''):
         method_name = f'{self.base_url}v1/disk/resources/upload'
-        url = 'https://sun9-79.userapi.com/c10408/u4172580/-6/x_ee97448e.jpg'
-        url1 = 'Загрузки'
         headers = self.get_headers()
-        params = {'path': url1, 'url': url}
-        response = requests.put(method_name, headers=headers, params=params)
-        print(response.status_code)
+        params = {'path': f'{dir_name}/{file_name}', 'url': url}
+        response = requests.post(method_name, headers=headers, params=params)
+        return response
         # for i in photos:
         #    print(i)
 
     def get_files_list(self):
         files_url = 'https://cloud-api.yandex.net/v1/disk/resources/files'
         headers = self.get_headers()
-        response = requests.get(files_url, headers=headers)
+        params = {'limit': 10000000}
+        response = requests.get(files_url, headers=headers, params=params)
         return response
