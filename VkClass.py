@@ -12,8 +12,7 @@ class VkApiHandler:
         }
 
     def get_photos_with_max_size(self, photos):
-        # url : (likes, date)
-        photos_dict = {}
+        photos_dict = {}  # url : (likes, date, size_photo)
         photo_types = 'wzyrqpoxms'
         for photo in photos['response']['items']:
             date = photo['date']
@@ -29,6 +28,8 @@ class VkApiHandler:
                 if flag is True:
                     break
             photos_dict[url] = (photo['likes']['count'], date, size_photo)
+
+        print('Получен словарь с фотографиями максимального разрешения')
         return photos_dict
 
     def get_all_user_photos(self, owner_id, count, album_id='profile', extended='1'):
