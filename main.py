@@ -22,8 +22,8 @@ def main():
         exit(f'Произошла ошибка при получении фотографий.\n Код ошибки {response.status_code}')
 
     photos_dict = user1.get_photos_with_max_size(response.json())
-    ya_api_token = os.getenv('YA_API_TOKEN')
-    # ya_api_token = input('Введите токен яндекс диска: ')
+    # ya_api_token = os.getenv('YA_API_TOKEN')
+    ya_api_token = input('Введите токен яндекс диска: ')
 
     user1 = YaApiHandler(ya_api_token)
     response = user1.create_dir_on_disk(dir_name=dir_name)
