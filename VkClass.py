@@ -27,6 +27,7 @@ class VkApiHandler:
                         break
                 if flag is True:
                     break
+
             photos_dict[url] = (photo['likes']['count'], date, size_photo)
 
         print('Получен словарь с фотографиями максимального разрешения')
@@ -36,4 +37,6 @@ class VkApiHandler:
         method_name = f'{self.base_url}photos.get'
         params = {'count': count, 'owner_id': owner_id, 'album_id': album_id, 'extended': extended, **self.params}
         response = requests.get(url=method_name, params=params)
-        return response
+        if response.status_code != 200:
+            exit(f'Произошла ошибка при получении фотографий.\n Код ошибки {response.status_code}')
+        return response.json()
