@@ -56,7 +56,7 @@ class YaApiHandler:
         file_name = f'{value[0]}.jpg'
         if flag == 1:
             file_name = f'{value[0]}.{value[1]}'
-            
+
         if response.status_code != 202:
             print(f'\nПроизошла ошибка при загрузки файла {key}.\n Код ошибки {response.status_code}')
         else:
